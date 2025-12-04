@@ -7,13 +7,19 @@ clientes=[]
 
 def new_client():
     cpf=input("Digite o seu CPF (somente números): ")
-    nome=input("Digite o seu nome completo: ")
-    endereco=input("Digite o seu endereco completo: ")
-    data_nascimento=input("Digite a sua data de nascimento: ")
-    cliente=Cliente(cpf, nome, endereco, data_nascimento)
-    clientes.append(cliente.to_dict())
-    print("Cliente cadastrado com sucesso")
-    input("Pressione enter para continuar => ")
+    for cliente in clientes:
+        if cpf==cliente["cpf"]:
+            print("Usuário já possui cadastro")
+            input("Pressione enter para continuar => ")
+            break
+    else:
+        nome=input("Digite o seu nome completo: ")
+        endereco=input("Digite o seu endereço no formato: Logradouro - Nro - Bairro - Cidade/sigla Estado ")
+        data_nascimento=input("Digite a sua data de nascimento no formato (dd/mm/aaaa): ")
+        cliente=Cliente(cpf, nome, endereco, data_nascimento)
+        clientes.append(cliente.to_dict())
+        print("Cliente cadastrado com sucesso")
+        input("Pressione enter para continuar => ")
 
 
 
